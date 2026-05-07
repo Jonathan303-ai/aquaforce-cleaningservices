@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/images/logo-aquaforce-aangepast.webp';
+import logo from '../assets/images/logo-aquaforce.webp';
 
 const year = new Date().getFullYear();
 ---
@@ -12,19 +12,13 @@ const year = new Date().getFullYear();
       <!-- Brand -->
       <div>
         <a href="/" class="inline-flex mb-5" aria-label="Aquaforce Cleaning Services — home">
-          <div
-            class="inline-flex items-center transition-all duration-200 hover:brightness-110"
-            style="background: rgba(5,15,32,0.65); border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 8px 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.28); backdrop-filter: blur(10px);"
-          >
-            <Image
-              src={logo}
-              alt="Aquaforce Cleaning Services"
-              height={38}
-              class="block w-auto object-contain h-[38px]"
-              style="border-radius: 6px;"
-              loading="lazy"
-            />
-          </div>
+          <Image
+            src={logo}
+            alt="Aquaforce Cleaning Services"
+            height={60}
+            class="block w-auto object-contain h-[60px] transition-opacity duration-200 hover:opacity-90"
+            loading="lazy"
+          />
         </a>
         <p class="text-slate-500 text-sm leading-relaxed">
           Professionele schoonmaakdiensten in Bree, Limburg en omliggende regio's. Betrouwbaar, grondig en op afgesproken tijdstippen.
