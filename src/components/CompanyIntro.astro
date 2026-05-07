@@ -1,0 +1,48 @@
+---
+---
+
+<section id="over-ons" class="bg-navy-950 py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
+
+      <!-- Left -->
+      <div>
+        <p class="text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-4">Over Aquaforce</p>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white mb-6 leading-tight">
+          Vakmanschap met<br />aandacht voor detail
+        </h2>
+        <p class="text-slate-400 text-lg leading-relaxed mb-5">
+          Aquaforce is een schoonmaakbedrijf gevestigd in Bree, actief in de ruimere Limburgse regio.
+          We werken met professioneel materiaal en stellen duidelijke afspraken voorop.
+        </p>
+        <p class="text-slate-500 leading-relaxed">
+          Of het nu gaat om een wekelijkse kantooropkuis, het wassen van grote glaspartijen
+          of de reiniging van uw oprit — wij zorgen voor een verzorgd resultaat dat u kunt zien.
+        </p>
+      </div>
+
+      <!-- Right -->
+      <div class="flex flex-col gap-4 lg:pt-16">
+        {[
+          { title: 'Professioneel materiaal', desc: 'Aangepast gereedschap en middelen voor elk type oppervlak.' },
+          { title: 'Flexibele planning', desc: 'Op uw tijdstippen, ook buiten openingsuren.' },
+          { title: 'Duidelijke prijsafspraken', desc: 'Geen verrassingen achteraf — alles wordt op voorhand besproken.' },
+          { title: 'Betrouwbaar en verzekerd', desc: 'Een team waar u op kunt rekenen, elke keer opnieuw.' },
+        ].map((item) => (
+          <div class="flex items-start gap-4 bg-navy-800/50 border border-navy-600/40 rounded-xl p-5">
+            <span class="w-6 h-6 rounded-full bg-water-500/10 border border-water-500/25 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-water-400" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="font-display font-semibold text-white text-sm mb-1">{item.title}</p>
+              <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

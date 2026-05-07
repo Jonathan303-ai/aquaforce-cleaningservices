@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/man-voor-camionette.webp';
+---
+
+<section class="relative min-h-screen flex items-end overflow-hidden bg-navy-950">
+
+  <!-- Background image -->
+  <Image
+    src={heroImage}
+    alt=""
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
+  />
+
+  <!-- Cinematic overlays — links donker voor tekst, rechts/boven beeld zichtbaar -->
+  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-navy-950/72 via-navy-950/38 to-transparent"></div>
+  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-950/78"></div>
+  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-br from-water-900/[0.06] to-transparent"></div>
+
+  <!-- Content — gepositioneerd onderaan voor cinematic look -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-36 pb-24 md:pt-44 md:pb-32">
+    <div class="max-w-2xl">
+
+      <p class="animate-fade-up delay-100 text-shadow-sm inline-flex items-center gap-2 text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-7">
+        <span class="w-6 h-px bg-water-400/50"></span>
+        Professionele schoonmaak
+        <span class="w-6 h-px bg-water-400/50"></span>
+      </p>
+
+      <h1 class="animate-fade-up delay-200 font-display font-extrabold text-4xl md:text-6xl lg:text-[68px] leading-[1.06] tracking-tight text-white mb-6">
+        <span class="text-shadow-hero">Uw ruimte in</span><br />
+        <span
+          class="bg-gradient-to-r from-water-200 via-water-300 to-water-400 bg-clip-text text-transparent"
+          style="text-shadow: none; filter: drop-shadow(0 1px 14px rgba(56,189,248,0.30));"
+        >
+          professionele handen
+        </span>
+      </h1>
+
+      <p class="animate-fade-up delay-300 text-shadow-sm text-slate-300/90 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
+        Aquaforce levert schoonmaakdiensten voor kantoren, ramen en buitenruimtes
+        in Bree, Limburg en omliggende regio's. Grondig, betrouwbaar en op afgesproken tijdstippen.
+      </p>
+
+      <div class="animate-fade-up delay-400 flex flex-wrap gap-4">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-water-500 hover:bg-water-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 shadow-xl shadow-water-500/25 hover:-translate-y-0.5"
+        >
+          Vrijblijvende offerte
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+            <path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <a
+          href="#diensten"
+          class="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white/85 hover:text-white font-medium px-8 py-4 rounded-lg transition-all duration-200 bg-white/[0.04] backdrop-blur-sm hover:-translate-y-0.5"
+        >
+          Onze diensten
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom wave transition -->
+  <div aria-hidden="true" class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 56" fill="none" preserveAspectRatio="none" class="w-full h-14">
+      <path d="M0 28C240 56 480 0 720 28C960 56 1200 0 1440 28V56H0V28Z" fill="#060e1d"/>
+    </svg>
+  </div>
+</section>

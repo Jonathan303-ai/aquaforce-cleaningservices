@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #020917;
+  --color-navy-900: #060e1d;
+  --color-navy-800: #0a1628;
+  --color-navy-700: #0f1f3d;
+  --color-navy-600: #1a2f50;
+
+  --color-water-200: #bae6fd;
+  --color-water-300: #7dd3fc;
+  --color-water-400: #38bdf8;
+  --color-water-500: #0ea5e9;
+  --color-water-600: #0284c7;
+  --color-water-700: #0369a1;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #020917;
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(14, 165, 233, 0.25);
+    color: #f0f9ff;
+  }
+}
+
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(30px, -20px) scale(1.05); opacity: 0.6; }
+  66% { transform: translate(-20px, 15px) scale(0.97); opacity: 0.5; }
+}
+
+@keyframes blob-drift-alt {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  33% { transform: translate(-25px, 20px) scale(1.03); opacity: 0.5; }
+  66% { transform: translate(20px, -15px) scale(0.98); opacity: 0.4; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-blob {
+  animation: blob-drift 12s ease-in-out infinite;
+}
+
+.animate-blob-alt {
+  animation: blob-drift-alt 15s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Sitewide waterdruppel achtergrondtextuur */
+/*
+  Waterdruppel-textuur — sitewide overlay via mix-blend-mode: screen
+  ─────────────────────────────────────────────────────────────────
+  Probleem met z-index: 0 was dat <section class="relative ..."> elementen
+  later in de DOM staan en hun opaque backgrounds alles afdekten.
+  Oplossing: z-index: 9999 + mix-blend-mode: screen zodat de textuur
+  via screen-blending door ELKE achtergrond heen zichtbaar is.
+
+  mix-blend-mode: screen op donkere vlakken:
+    • screen(donker, lichtblauw) → subtiel lichter blauwige vlekken
+    • screen(wit, alles) = wit → witte tekst blijft 100% ongewijzigd
+    • screen(lichtblauw CTA, lichtblauw) → nauwelijks verschil
+  pointer-events: none → blokkeert nooit klikken/hover
+*/
+#water-texture {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  opacity: 0.13;
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><path d='M36 10 C24 22 24 32 24 40 A12 12 0 0 1 48 40 C48 32 48 22 36 10Z' fill='%2338bdf8' fill-opacity='0.82'/><ellipse cx='29' cy='22' rx='3' ry='5' fill='white' fill-opacity='0.32' transform='rotate(-25 29 22)'/><path d='M174 88 C163 101 163 108 163 115 A11 11 0 0 1 185 115 C185 108 185 101 174 88Z' fill='%230ea5e9' fill-opacity='0.76'/><ellipse cx='168' cy='99' rx='2' ry='3.8' fill='white' fill-opacity='0.26' transform='rotate(-22 168 99)'/><path d='M66 162 C58 172 58 178 58 184 A8 8 0 0 1 74 184 C74 178 74 172 66 162Z' fill='%2338bdf8' fill-opacity='0.70'/><ellipse cx='61' cy='170' rx='1.5' ry='2.8' fill='white' fill-opacity='0.20' transform='rotate(-22 61 170)'/><ellipse cx='148' cy='26' rx='13' ry='6' fill='none' stroke='%2338bdf8' stroke-opacity='0.55' stroke-width='1.5'/><ellipse cx='18' cy='128' rx='9' ry='4.5' fill='none' stroke='%2338bdf8' stroke-opacity='0.42' stroke-width='1'/><circle cx='100' cy='80' r='4.5' fill='%2338bdf8' fill-opacity='0.68'/><circle cx='194' cy='158' r='4' fill='%230ea5e9' fill-opacity='0.64'/><circle cx='160' cy='54' r='2.5' fill='%2338bdf8' fill-opacity='0.58'/><circle cx='80' cy='192' r='3' fill='%230284c7' fill-opacity='0.60'/><circle cx='124' cy='132' r='2' fill='%2338bdf8' fill-opacity='0.52'/><circle cx='156' cy='182' r='2' fill='%2338bdf8' fill-opacity='0.50'/><circle cx='208' cy='94' r='1.8' fill='%230ea5e9' fill-opacity='0.52'/><circle cx='46' cy='94' r='1.5' fill='%2338bdf8' fill-opacity='0.46'/><circle cx='210' cy='40' r='1.5' fill='%2338bdf8' fill-opacity='0.42'/></svg>");
+}
+
+@media (max-width: 768px) {
+  #water-texture {
+    opacity: 0.09;
+    background-size: 180px 180px;
+  }
+}
+
+/* Text-shadow utilities voor leesbaarheid op foto-achtergronden */
+.text-shadow-hero {
+  text-shadow:
+    0 2px 24px rgba(2, 9, 23, 0.65),
+    0 1px 8px rgba(2, 9, 23, 0.5);
+}
+.text-shadow-sm {
+  text-shadow: 0 1px 10px rgba(2, 9, 23, 0.75);
+}

@@ -1,0 +1,164 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+
+import heroImg from '../assets/images/ramenwasser-limburg-hero.webp';
+import detail1 from '../assets/images/ramenwasser-limburg-detail-1.webp';
+import detail2 from '../assets/images/ramenwasser-limburg-detail-2.webp';
+---
+
+<PageLayout
+  title="Ramen wassen in Bree en Limburg | Aquaforce Cleaning Services"
+  description="Professioneel ramen wassen voor particulieren en bedrijven in Bree, Limburg en omliggende regio's. Binnen- en buitenzijde, glaspartijen, vitrines en kozijnen. Streeploos resultaat."
+>
+
+  <!-- Hero met achtergrondafbeelding -->
+  <section class="relative min-h-[72vh] flex items-end overflow-hidden bg-navy-950">
+
+    <Image
+      src={heroImg}
+      alt="Professioneel ramen wassen"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
+    />
+
+    <!-- Overlays — beeld zichtbaar bovenaan, tekst leesbaar onderaan -->
+    <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-navy-950/82 via-navy-950/28 to-transparent"></div>
+    <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-navy-950/50 via-navy-950/15 to-transparent"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-36 pb-14 md:pt-44 md:pb-18">
+      <nav aria-label="Breadcrumb" class="text-shadow-sm flex items-center gap-2 text-slate-400 text-sm mb-7">
+        <a href="/" class="hover:text-slate-200 transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+        <span class="text-slate-300">Ramen wassen</span>
+      </nav>
+      <p class="text-shadow-sm text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-4">Dienst</p>
+      <h1 class="text-shadow-hero font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-5 max-w-2xl">
+        Ramen wassen
+      </h1>
+      <p class="text-shadow-sm text-slate-300/90 text-lg leading-relaxed max-w-xl">
+        Heldere ramen geven direct een professioneel beeld. Streeploos en met de
+        juiste middelen — voor particulieren en bedrijven.
+      </p>
+    </div>
+  </section>
+
+  <!-- Wat reinigen we -->
+  <section class="bg-navy-900 py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-14 items-start">
+
+        <div>
+          <h2 class="font-display font-extrabold text-2xl md:text-3xl text-white mb-6">Wat reinigen we?</h2>
+          <p class="text-slate-400 leading-relaxed mb-5">
+            We wassen ramen aan binnen- en buitenzijde, inclusief glaspartijen, vitrines en
+            raamkozijnen. We werken met professioneel materiaal dat een streeploos en droogvlekvrij
+            resultaat garandeert — ook bij grotere oppervlakken of moeilijk bereikbare ramen.
+          </p>
+          <p class="text-slate-400 leading-relaxed">
+            Ons team houdt rekening met het type glas en de omgeving. Delicate afwerkingen
+            of speciale beglazing worden met de nodige voorzichtigheid behandeld.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { label: 'Binnenzijde ramen', desc: 'Grondige reiniging van alle binnenoppervlakken, inclusief vensterbanken.' },
+            { label: 'Buitenzijde ramen', desc: 'Verwijdering van vuil, kalkaanslag en weersinvloeden.' },
+            { label: 'Glaspartijen', desc: 'Grote glazen wanden, kantoorpartities en schuifdeuren.' },
+            { label: 'Vitrines', desc: 'Etalageruiten en winkelglas met zorg voor het interieur.' },
+            { label: 'Raamkozijnen', desc: 'Reinigen van sponningen, dorpels en profielen.' },
+            { label: 'Moeilijk bereikbaar', desc: 'Ramen op hoogte met aangepast materiaal en veilige werkmethodes.' },
+          ].map((item) => (
+            <div class="bg-navy-800 border border-navy-600/50 rounded-xl p-5">
+              <h3 class="font-display font-semibold text-white text-sm mb-2">{item.label}</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detail afbeeldingen -->
+  <section class="bg-navy-950 py-10 md:py-14">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="relative rounded-2xl overflow-hidden">
+          <Image
+            src={detail1}
+            alt="Ramen wassen — professionele techniek"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+            class="w-full h-72 md:h-80 object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-950/22 to-transparent pointer-events-none"></div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden">
+          <Image
+            src={detail2}
+            alt="Streeploze ramen na reiniging"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+            class="w-full h-72 md:h-80 object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-950/22 to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Werkwijze -->
+  <section class="bg-navy-900 py-20 md:py-28">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-display font-extrabold text-2xl md:text-3xl text-white mb-4">Hoe werkt het?</h2>
+        <p class="text-slate-400 max-w-lg mx-auto">Eenvoudig gepland, zichtbaar resultaat.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { num: '01', title: 'Vrijblijvende offerte', desc: 'We bepalen het aantal ramen, de bereikbaarheid en de gewenste frequentie. U ontvangt een duidelijke prijs.' },
+          { num: '02', title: 'Afgesproken tijdstip', desc: 'We plannen in op een moment dat u past — ook buiten openingsuren voor bedrijven.' },
+          { num: '03', title: 'Streeploos resultaat', desc: 'We werken met professionele wisser- en reinigingstechnieken voor een perfect eindresultaat.' },
+        ].map((step) => (
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full bg-navy-800 border border-navy-600/80 flex items-center justify-center mx-auto mb-4">
+              <span class="font-display font-extrabold text-water-400">{step.num}</span>
+            </div>
+            <h3 class="font-display font-bold text-white mb-3">{step.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Praktische info -->
+  <section class="bg-navy-950 py-12">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <div class="bg-navy-800 border border-navy-600/50 rounded-2xl p-7 flex flex-wrap gap-8 justify-center">
+        {[
+          { label: 'Voor wie', value: 'Particulieren en bedrijven' },
+          { label: 'Frequentie', value: 'Eenmalig of periodiek' },
+          { label: 'Werkgebied', value: "Bree, Limburg en omliggende regio's" },
+          { label: 'Materiaal', value: 'Professioneel en veilig' },
+        ].map((info) => (
+          <div class="text-center">
+            <div class="font-display font-bold text-white text-sm mb-1">{info.label}</div>
+            <div class="text-slate-400 text-sm">{info.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</PageLayout>

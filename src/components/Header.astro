@@ -1,0 +1,118 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Kantoorschoonmaak', href: '/kantoorschoonmaak' },
+  { label: 'Ramen wassen', href: '/ramen-wassen' },
+  { label: 'Oprit & gevelreiniging', href: '/oprit-en-gevelreiniging' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const pathname = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+}
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-navy-950/85 backdrop-blur-md border-b border-white/5"
+  id="site-header"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 shrink-0">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-water-400 to-water-600 flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3C12 3 6 9 6 14a6 6 0 0 0 12 0c0-5-6-11-6-11z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-display font-bold text-white text-base leading-none tracking-tight">Aquaforce</span>
+          <span class="block text-water-400/60 text-[10px] font-medium tracking-widest uppercase leading-none mt-0.5">Cleaning Services</span>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {navLinks.slice(0, -1).map((link) => (
+          <a
+            href={link.href}
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ${
+              isActive(link.href)
+                ? 'text-white bg-white/5'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+            }`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop CTA -->
+      <a
+        href="/contact"
+        class="hidden lg:inline-flex items-center gap-2 bg-water-500 hover:bg-water-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150 shadow-lg shadow-water-500/20"
+      >
+        Contact
+        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+          <path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-btn"
+        aria-label="Menu"
+        aria-expanded="false"
+        class="lg:hidden p-2 text-slate-400 hover:text-white transition-colors"
+      >
+        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/5 bg-navy-900">
+    <nav class="max-w-7xl mx-auto px-6 py-3 flex flex-col gap-1">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class={`mobile-nav-link px-3 py-3 rounded-md text-sm font-medium transition-colors ${
+            isActive(link.href)
+              ? 'text-white bg-white/5'
+              : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  function toggle(open: boolean) {
+    menu?.classList.toggle('hidden', !open);
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+    btn?.setAttribute('aria-expanded', String(open));
+  }
+
+  btn?.addEventListener('click', () => toggle(menu?.classList.contains('hidden') ?? false));
+  document.querySelectorAll('.mobile-nav-link').forEach((l) =>
+    l.addEventListener('click', () => toggle(false))
+  );
+</script>
