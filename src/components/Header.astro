@@ -26,13 +26,17 @@ function isActive(href: string) {
     <div class="flex items-center justify-between h-16 md:h-20">
 
       <!-- Logo -->
-      <a href="/" class="shrink-0 group" aria-label="Aquaforce Cleaning Services — home">
-        <div class="flex items-center px-3 py-1.5 rounded-xl bg-navy-800/55 border border-white/[0.07] shadow-md shadow-black/30 backdrop-blur-md transition-all duration-200 group-hover:bg-navy-700/55 group-hover:border-white/[0.12] group-hover:shadow-black/40">
+      <a href="/" class="shrink-0" aria-label="Aquaforce Cleaning Services — home">
+        <div
+          class="inline-flex items-center transition-all duration-200 hover:brightness-110"
+          style="background: rgba(5,15,32,0.75); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 8px 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); backdrop-filter: blur(12px);"
+        >
           <Image
             src={logo}
             alt="Aquaforce Cleaning Services"
-            height={44}
-            class="h-10 md:h-11 w-auto object-contain"
+            height={42}
+            class="block w-auto object-contain h-[34px] md:h-[42px]"
+            style="border-radius: 6px;"
             loading="eager"
             fetchpriority="high"
           />
@@ -87,12 +91,16 @@ function isActive(href: string) {
   <div id="mobile-menu" class="hidden lg:hidden border-t border-white/5 bg-navy-900">
     <!-- Logo herhaling in mobiel menu -->
     <div class="max-w-7xl mx-auto px-6 pt-4 pb-2">
-      <div class="inline-flex items-center px-2.5 py-1 rounded-lg bg-navy-800/55 border border-white/[0.06] backdrop-blur-sm">
+      <div
+        class="inline-flex items-center"
+        style="background: rgba(5,15,32,0.75); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; padding: 6px 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.30); backdrop-filter: blur(12px);"
+      >
         <Image
           src={logo}
           alt="Aquaforce Cleaning Services"
           height={34}
-          class="h-8 w-auto object-contain opacity-90"
+          class="block w-auto object-contain h-[34px]"
+          style="border-radius: 5px;"
           loading="lazy"
         />
       </div>
