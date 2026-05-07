@@ -14,7 +14,7 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
 >
 
   <!-- Hero met achtergrondafbeelding -->
-  <section class="relative min-h-[72vh] flex items-end overflow-hidden bg-navy-950">
+  <section class="relative flex items-end overflow-hidden bg-navy-950" style="min-height: clamp(500px, 72vh, 700px);">
 
     <Image
       src={heroImg}
@@ -23,7 +23,8 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      class="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
+      class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+      style="object-position: center top;"
     />
 
     <!-- Overlays — beeld zichtbaar bovenaan, tekst leesbaar onderaan -->
