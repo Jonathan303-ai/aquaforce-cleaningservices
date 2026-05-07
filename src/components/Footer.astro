@@ -11,14 +11,16 @@ const year = new Date().getFullYear();
 
       <!-- Brand -->
       <div>
-        <a href="/" class="inline-flex mb-5" aria-label="Aquaforce Cleaning Services — home">
-          <Image
-            src={logo}
-            alt="Aquaforce Cleaning Services"
-            height={36}
-            class="h-8 w-auto object-contain"
-            loading="lazy"
-          />
+        <a href="/" class="inline-flex mb-5 group" aria-label="Aquaforce Cleaning Services — home">
+          <div class="flex items-center px-3 py-1.5 rounded-xl bg-navy-800/40 border border-white/[0.06] transition-colors duration-200 group-hover:bg-navy-700/50 group-hover:border-white/[0.10]">
+            <Image
+              src={logo}
+              alt="Aquaforce Cleaning Services"
+              height={38}
+              class="h-9 w-auto object-contain"
+              loading="lazy"
+            />
+          </div>
         </a>
         <p class="text-slate-500 text-sm leading-relaxed">
           Professionele schoonmaakdiensten in Bree, Limburg en omliggende regio's. Betrouwbaar, grondig en op afgesproken tijdstippen.
