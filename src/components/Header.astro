@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo-aquaforce-aangepast.webp';
+
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Kantoorschoonmaak', href: '/kantoorschoonmaak' },
@@ -23,16 +26,15 @@ function isActive(href: string) {
     <div class="flex items-center justify-between h-16 md:h-20">
 
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 shrink-0">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-water-400 to-water-600 flex items-center justify-center">
-          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none">
-            <path d="M12 3C12 3 6 9 6 14a6 6 0 0 0 12 0c0-5-6-11-6-11z" fill="currentColor"/>
-          </svg>
-        </div>
-        <div>
-          <span class="font-display font-bold text-white text-base leading-none tracking-tight">Aquaforce</span>
-          <span class="block text-water-400/60 text-[10px] font-medium tracking-widest uppercase leading-none mt-0.5">Cleaning Services</span>
-        </div>
+      <a href="/" class="shrink-0 flex items-center" aria-label="Aquaforce Cleaning Services — home">
+        <Image
+          src={logo}
+          alt="Aquaforce Cleaning Services"
+          height={38}
+          class="h-8 md:h-9 w-auto object-contain"
+          loading="eager"
+          fetchpriority="high"
+        />
       </a>
 
       <!-- Desktop nav -->
@@ -81,7 +83,17 @@ function isActive(href: string) {
 
   <!-- Mobile nav -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-white/5 bg-navy-900">
-    <nav class="max-w-7xl mx-auto px-6 py-3 flex flex-col gap-1">
+    <!-- Logo herhaling in mobiel menu -->
+    <div class="max-w-7xl mx-auto px-6 pt-4 pb-2">
+      <Image
+        src={logo}
+        alt="Aquaforce Cleaning Services"
+        height={32}
+        class="h-7 w-auto object-contain opacity-80"
+        loading="lazy"
+      />
+    </div>
+    <nav class="max-w-7xl mx-auto px-6 py-2 flex flex-col gap-1">
       {navLinks.map((link) => (
         <a
           href={link.href}
