@@ -50,7 +50,7 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
   </section>
 
   <!-- Wat is inbegrepen -->
-  <section class="bg-navy-900 py-20 md:py-28">
+  <section class="bg-navy-900 py-24 md:py-36">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-14 items-start">
 
@@ -76,7 +76,7 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
             { label: 'Ontvangstruimtes', desc: 'Wachtruimtes, receptie en inkomhallen.' },
             { label: 'Vloeren', desc: 'Stofzuigen, dweilen en behandeling van harde vloeren.' },
           ].map((item) => (
-            <div class="bg-navy-800 border border-navy-600/50 rounded-xl p-5">
+            <div class="bg-navy-800/60 border border-white/[0.07] hover:border-white/[0.13] rounded-xl p-5 transition-colors duration-200">
               <h3 class="font-display font-semibold text-white text-sm mb-2">{item.label}</h3>
               <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
             </div>
@@ -90,25 +90,25 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
   <section class="bg-navy-950 py-10 md:py-14">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="relative rounded-2xl overflow-hidden">
+        <div class="relative rounded-2xl overflow-hidden bg-navy-800">
           <Image
             src={detail1}
             alt="Professionele kantoorschoonmaak in detail"
             widths={[400, 800, 1200]}
             sizes="(max-width: 768px) 100vw, 50vw"
             loading="lazy"
-            class="w-full h-72 md:h-80 object-cover"
+            class="w-full h-72 md:h-80 object-cover object-left"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950/22 to-transparent pointer-events-none"></div>
         </div>
-        <div class="relative rounded-2xl overflow-hidden">
+        <div class="relative rounded-2xl overflow-hidden bg-navy-800">
           <Image
             src={detail2}
             alt="Schone en verzorgde kantooromgeving"
             widths={[400, 800, 1200]}
             sizes="(max-width: 768px) 100vw, 50vw"
             loading="lazy"
-            class="w-full h-72 md:h-80 object-cover"
+            class="w-full h-72 md:h-80 object-cover object-right"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950/22 to-transparent pointer-events-none"></div>
         </div>
@@ -117,7 +117,7 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
   </section>
 
   <!-- Werkwijze -->
-  <section class="bg-navy-900 py-20 md:py-28">
+  <section class="bg-navy-900 py-24 md:py-36">
     <div class="max-w-5xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="font-display font-extrabold text-2xl md:text-3xl text-white mb-4">Onze aanpak</h2>
@@ -143,9 +143,9 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
   </section>
 
   <!-- Praktische info -->
-  <section class="bg-navy-950 py-12">
+  <section class="bg-navy-950 py-16 md:py-20">
     <div class="max-w-5xl mx-auto px-6 lg:px-8">
-      <div class="bg-navy-800 border border-navy-600/50 rounded-2xl p-7 flex flex-wrap gap-8 justify-center">
+      <div class="bg-navy-800/50 border border-white/[0.07] rounded-2xl p-8 md:p-10 flex flex-wrap gap-10 justify-center">
         {[
           { label: 'Frequentie', value: 'Dagelijks, wekelijks of op maat' },
           { label: 'Timing', value: 'Flexibel — ook buiten kantooruren' },

@@ -49,19 +49,42 @@
     box-sizing: border-box;
   }
 
+  /* Voorkomt inline-baseline gap (witte streep onder afbeeldingen) */
+  img {
+    display: block;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
     background-color: #05070B;
-    color: #E5E7EB;             /* neutraal wit, niet blauw-getint */
+    color: #E5E7EB;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Premium typografische hiërarchie — negatieve letter-spacing op koppen */
+  h1, h2, h3, h4 {
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  /* Betere leesbaarheid voor bodytekst */
+  p {
+    line-height: 1.75;
+  }
+
+  /* Premium focusring */
+  :focus-visible {
+    outline: 2px solid rgba(96, 165, 250, 0.55);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
   ::selection {
-    background-color: rgba(59, 130, 246, 0.25);   /* blue-500 */
+    background-color: rgba(59, 130, 246, 0.25);
     color: #EFF6FF;
   }
 }
@@ -111,15 +134,25 @@
 @layer base {
   .bg-navy-950 {
     background-image:
-      radial-gradient(ellipse 70% 50% at 0% 100%, rgba(37, 99, 235, 0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 55% 40% at 100% 0%, rgba(96, 165, 250, 0.04) 0%, transparent 65%);
+      radial-gradient(ellipse 80% 55% at 0% 100%, rgba(37, 99, 235, 0.09) 0%, transparent 68%),
+      radial-gradient(ellipse 60% 45% at 100% 0%, rgba(96, 165, 250, 0.055) 0%, transparent 62%);
   }
 
   .bg-navy-900 {
     background-image:
-      radial-gradient(ellipse 65% 50% at 100% 100%, rgba(37, 99, 235, 0.06) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 38% at 0% 0%, rgba(96, 165, 250, 0.03) 0%, transparent 60%);
+      radial-gradient(ellipse 75% 55% at 100% 100%, rgba(37, 99, 235, 0.08) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 42% at 0% 0%, rgba(96, 165, 250, 0.045) 0%, transparent 58%);
   }
+}
+
+/* Premium card — subtiele diepschaduw met hover-overgang */
+.premium-card {
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(59,130,246,0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s ease;
+}
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 52px rgba(0, 0, 0, 0.55), 0 0 0 0 rgba(59,130,246,0);
 }
 
 /* Text-shadow utilities voor leesbaarheid op foto-achtergronden */

@@ -8,6 +8,9 @@ const year = new Date().getFullYear();
 
 <footer class="relative bg-navy-900 border-t border-navy-700/40 overflow-hidden">
 
+  <!-- Subtiele bovenrand-fade naar zwart voor premium overgang van content naar footer -->
+  <div aria-hidden="true" class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-navy-950 to-transparent pointer-events-none z-20"></div>
+
   <!-- Decoratieve waterbranding overlay — subtiel, alpha-transparant PNG -->
   <!-- mix-blend-mode: screen op donkere achtergrond: licht blauwe accenten waar
        de PNG niet transparant is, volledig onzichtbaar waar de PNG transparant is -->
@@ -26,8 +29,8 @@ const year = new Date().getFullYear();
   </div>
 
   <!-- Footer content — z-index boven overlay -->
-  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-14">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
 
       <!-- Brand -->
       <div>

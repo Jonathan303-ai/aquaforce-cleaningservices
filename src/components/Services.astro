@@ -42,11 +42,11 @@ const services: Service[] = [
 ];
 ---
 
-<section id="diensten" class="relative bg-navy-900 py-24 md:py-32">
+<section id="diensten" class="relative bg-navy-900 py-32 md:py-44">
 
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
-    <div class="text-center mb-14">
+    <div class="text-center mb-16">
       <p class="text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-4">Wat we aanbieden</p>
       <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white mb-4">
         Onze diensten
@@ -60,10 +60,10 @@ const services: Service[] = [
       {services.map((service) => (
         <a
           href={service.href}
-          class="group relative bg-navy-800 border border-navy-600/50 hover:border-water-500/30 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-950/60"
+          class="group relative bg-gradient-to-b from-[#14181f] to-navy-900 border border-white/[0.07] hover:border-water-500/[0.22] rounded-2xl overflow-hidden flex flex-col premium-card"
         >
           <!-- Foto bovenaan kaart -->
-          <div class="relative h-44 overflow-hidden shrink-0">
+          <div class="relative h-52 overflow-hidden shrink-0 bg-navy-800">
             <Image
               src={service.image}
               alt={service.imageAlt}
@@ -77,7 +77,7 @@ const services: Service[] = [
           </div>
 
           <!-- Kaartinhoud -->
-          <div class="flex flex-col gap-4 p-6 flex-1">
+          <div class="flex flex-col gap-4 p-7 flex-1">
             <!-- Icon badge -->
             <div class="w-10 h-10 rounded-xl bg-navy-700 border border-navy-600/80 group-hover:border-water-500/25 flex items-center justify-center text-water-400 transition-colors duration-300 shrink-0">
               <Fragment set:html={service.icon} />
