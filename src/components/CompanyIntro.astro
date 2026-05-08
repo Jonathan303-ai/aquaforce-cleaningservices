@@ -1,11 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+import vanImage from '../assets/images/aquaforce-van.jpg';
 ---
 
-<section id="over-ons" class="bg-navy-950 py-20 md:py-28">
+<section id="over-ons" class="bg-navy-950 py-20 md:py-28 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-      <!-- Left -->
+      <!-- Tekst links -->
       <div>
         <p class="text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-4">Over Aquaforce</p>
         <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white mb-6 leading-tight">
@@ -15,32 +17,53 @@
           Aquaforce is een schoonmaakbedrijf gevestigd in Bree, actief in de ruimere Limburgse regio.
           We werken met professioneel materiaal en stellen duidelijke afspraken voorop.
         </p>
-        <p class="text-slate-500 leading-relaxed">
+        <p class="text-slate-500 leading-relaxed mb-8">
           Of het nu gaat om een wekelijkse kantooropkuis, het wassen van grote glaspartijen
           of de reiniging van uw oprit — wij zorgen voor een verzorgd resultaat dat u kunt zien.
         </p>
+
+        <ul class="space-y-3">
+          {[
+            'Professioneel materiaal voor elk oppervlak',
+            'Flexibele planning op uw tijdstippen',
+            'Duidelijke prijsafspraken vooraf',
+            'Betrouwbaar en verzekerd team',
+          ].map((item) => (
+            <li class="flex items-center gap-3 text-slate-300 text-sm">
+              <span class="w-5 h-5 rounded-full bg-water-500/10 border border-water-500/25 flex items-center justify-center shrink-0">
+                <svg class="w-3 h-3 text-water-400" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <!-- Right -->
-      <div class="flex flex-col gap-4 lg:pt-16">
-        {[
-          { title: 'Professioneel materiaal', desc: 'Aangepast gereedschap en middelen voor elk type oppervlak.' },
-          { title: 'Flexibele planning', desc: 'Op uw tijdstippen, ook buiten openingsuren.' },
-          { title: 'Duidelijke prijsafspraken', desc: 'Geen verrassingen achteraf — alles wordt op voorhand besproken.' },
-          { title: 'Betrouwbaar en verzekerd', desc: 'Een team waar u op kunt rekenen, elke keer opnieuw.' },
-        ].map((item) => (
-          <div class="flex items-start gap-4 bg-navy-800/50 border border-navy-600/40 rounded-xl p-5">
-            <span class="w-6 h-6 rounded-full bg-water-500/10 border border-water-500/25 flex items-center justify-center shrink-0 mt-0.5">
-              <svg class="w-3.5 h-3.5 text-water-400" viewBox="0 0 12 12" fill="none">
-                <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <div>
-              <p class="font-display font-semibold text-white text-sm mb-1">{item.title}</p>
-              <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+      <!-- Afbeelding rechts -->
+      <div class="relative order-first lg:order-last">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/60">
+          <Image
+            src={vanImage}
+            alt="Aquaforce — professioneel reinigingsvoertuig in Bree, Limburg"
+            widths={[480, 800, 1200]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            loading="lazy"
+            class="w-full h-[320px] md:h-[400px] object-cover object-center"
+          />
+          <!-- Subtiele overlay voor diepte -->
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-950/35 via-transparent to-transparent pointer-events-none"></div>
+          <!-- Status badge -->
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="inline-flex items-center gap-2.5 bg-navy-950/80 backdrop-blur-md border border-water-500/20 rounded-xl px-4 py-2.5">
+              <span class="w-2 h-2 rounded-full bg-water-400 shrink-0 animate-pulse"></span>
+              <span class="text-slate-300 text-sm font-medium">Actief in Bree, Limburg en omgeving</span>
             </div>
           </div>
-        ))}
+        </div>
+        <!-- Decoratieve glow -->
+        <div class="absolute -inset-2 rounded-2xl bg-gradient-to-br from-water-500/8 to-transparent -z-10 blur-sm pointer-events-none"></div>
       </div>
 
     </div>

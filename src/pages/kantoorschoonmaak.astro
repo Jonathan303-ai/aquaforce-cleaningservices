@@ -23,8 +23,8 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-      style="object-position: center top;"
+      class="hero-bg-img absolute left-0 right-0 bottom-0 w-full select-none pointer-events-none"
+      style="object-fit: cover; object-position: center top;"
     />
 
     <!-- Overlays — beeld zichtbaar bovenaan, tekst leesbaar onderaan -->
@@ -163,3 +163,16 @@ import detail2 from '../assets/images/kantoor-detail-2.webp';
 
   <ContactCTA />
 </PageLayout>
+
+<style>
+  .hero-bg-img {
+    top: 64px;
+    height: calc(100% - 64px);
+  }
+  @media (min-width: 1024px) {
+    .hero-bg-img {
+      top: 80px;
+      height: calc(100% - 80px);
+    }
+  }
+</style>

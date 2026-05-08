@@ -1,20 +1,41 @@
 ---
-const services = [
+import { Image } from 'astro:assets';
+import imgKantoor from '../assets/images/kantoor-hero.webp';
+import imgRamen from '../assets/images/ramenwasser-limburg-hero.webp';
+import imgGevel from '../assets/images/gevelreiniging-hero.webp';
+import type { ImageMetadata } from 'astro';
+
+interface Service {
+  href: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const services: Service[] = [
   {
     href: '/kantoorschoonmaak',
-    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2M5 21H3M9 7h6M9 11h6M9 15h4"/></svg>`,
+    image: imgKantoor,
+    imageAlt: 'Professionele kantoorschoonmaak — Aquaforce',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2M5 21H3M9 7h6M9 11h6M9 15h4"/></svg>`,
     title: 'Kantoorschoonmaak',
     description: 'Dagelijkse of periodieke reiniging van kantoorruimtes, vergaderzalen, sanitair en keukens. Discreet en efficiënt, ook buiten kantooruren.',
   },
   {
     href: '/ramen-wassen',
-    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M12 3v18"/></svg>`,
+    image: imgRamen,
+    imageAlt: 'Ramen wassen — Aquaforce Limburg',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M12 3v18"/></svg>`,
     title: 'Ramen wassen',
     description: 'Streeploze ramen voor particulieren en bedrijven. Binnen- en buitenzijde, glaspartijen, vitrines en kozijnen met professioneel materiaal.',
   },
   {
     href: '/oprit-en-gevelreiniging',
-    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+    image: imgGevel,
+    imageAlt: 'Oprit en gevelreiniging — Aquaforce Bree',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
     title: 'Oprit & gevelreiniging',
     description: 'Reinigen van opritten, gevels, terrassen en verhardingen. Aanpak van mos, algen en aanslag met aangepaste drukreiniging.',
   },
@@ -39,23 +60,41 @@ const services = [
       {services.map((service) => (
         <a
           href={service.href}
-          class="group relative bg-navy-800 border border-navy-600/50 hover:border-water-500/30 rounded-2xl p-7 flex flex-col gap-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-950/50"
+          class="group relative bg-navy-800 border border-navy-600/50 hover:border-water-500/30 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-950/60"
         >
-          <div class="w-12 h-12 rounded-xl bg-navy-700 border border-navy-600/80 group-hover:border-water-500/25 flex items-center justify-center text-water-400 transition-colors duration-300">
-            <Fragment set:html={service.icon} />
+          <!-- Foto bovenaan kaart -->
+          <div class="relative h-44 overflow-hidden shrink-0">
+            <Image
+              src={service.image}
+              alt={service.imageAlt}
+              widths={[400, 800]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              loading="lazy"
+              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+            />
+            <!-- Gradient overgang naar kaartbody -->
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-800/75 via-navy-800/20 to-transparent pointer-events-none"></div>
           </div>
 
-          <div class="flex-1">
-            <h3 class="font-display font-bold text-lg text-white mb-3">{service.title}</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">{service.description}</p>
-          </div>
+          <!-- Kaartinhoud -->
+          <div class="flex flex-col gap-4 p-6 flex-1">
+            <!-- Icon badge -->
+            <div class="w-10 h-10 rounded-xl bg-navy-700 border border-navy-600/80 group-hover:border-water-500/25 flex items-center justify-center text-water-400 transition-colors duration-300 shrink-0">
+              <Fragment set:html={service.icon} />
+            </div>
 
-          <span class="inline-flex items-center gap-1.5 text-water-400 group-hover:text-water-300 text-sm font-medium transition-colors duration-200">
-            Meer informatie
-            <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="currentColor">
-              <path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-            </svg>
-          </span>
+            <div class="flex-1">
+              <h3 class="font-display font-bold text-lg text-white mb-2">{service.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">{service.description}</p>
+            </div>
+
+            <span class="inline-flex items-center gap-1.5 text-water-400 group-hover:text-water-300 text-sm font-medium transition-colors duration-200">
+              Meer informatie
+              <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </div>
 
           <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-water-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
         </a>
