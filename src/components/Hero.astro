@@ -29,23 +29,23 @@ import heroImage from '../assets/images/shcoonmaakbedrijf-limburt-aquaforce-hero
   <!-- Cinematic overlays — links donker voor tekst, rechts/boven beeld zichtbaar -->
   <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-navy-950/72 via-navy-950/38 to-transparent"></div>
   <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-950/78"></div>
-  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-br from-water-900/[0.06] to-transparent"></div>
+  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-br from-[rgba(201,168,76,0.04)] to-transparent"></div>
 
   <!-- Content -->
   <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-32 pb-20 md:pt-40 md:pb-28">
     <div class="max-w-2xl">
 
-      <p class="animate-fade-up delay-100 text-shadow-sm inline-flex items-center gap-2 text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-7">
-        <span class="w-6 h-px bg-water-400/50"></span>
+      <p class="animate-fade-up delay-100 text-shadow-sm inline-flex items-center gap-2 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-7" style="color: #C9A84C;">
+        <span class="w-6 h-px" style="background-color: rgba(201,168,76,0.50);"></span>
         Professionele schoonmaak
-        <span class="w-6 h-px bg-water-400/50"></span>
+        <span class="w-6 h-px" style="background-color: rgba(201,168,76,0.50);"></span>
       </p>
 
       <h1 class="animate-fade-up delay-200 font-display font-extrabold text-4xl md:text-6xl lg:text-[68px] leading-[1.06] tracking-tight text-white mb-6">
         <span class="text-shadow-hero">Uw ruimte in</span><br />
         <span
-          class="bg-gradient-to-r from-water-200 via-water-300 to-water-400 bg-clip-text text-transparent"
-          style="text-shadow: none; filter: drop-shadow(0 1px 14px rgba(96,165,250,0.28));"
+          class="bg-clip-text text-transparent"
+          style="background-image: linear-gradient(to right, #E8C97A, #C9A84C, #A8853A); text-shadow: none; filter: drop-shadow(0 1px 14px rgba(201,168,76,0.32));"
         >
           professionele handen
         </span>
@@ -59,7 +59,7 @@ import heroImage from '../assets/images/shcoonmaakbedrijf-limburt-aquaforce-hero
       <div class="animate-fade-up delay-400 flex flex-wrap gap-4">
         <a
           href="/contact"
-          class="inline-flex items-center gap-2 bg-water-500 hover:bg-water-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 shadow-xl shadow-water-500/25 hover:-translate-y-0.5"
+          class="hero-cta-gold inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:-translate-y-0.5"
         >
           Vrijblijvende offerte
           <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
@@ -94,5 +94,16 @@ import heroImage from '../assets/images/shcoonmaakbedrijf-limburt-aquaforce-hero
       top: 80px;
       height: calc(100% - 80px);
     }
+  }
+
+  /* Goud/brons CTA-knop — zelfde kleur als infobalk-iconen (#C9A84C) */
+  .hero-cta-gold {
+    background-color: #C9A84C;
+    color: #0B0F14;
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.30);
+  }
+  .hero-cta-gold:hover {
+    background-color: #B8962E;
+    box-shadow: 0 8px 32px rgba(201, 168, 76, 0.42);
   }
 </style>
