@@ -1,30 +1,29 @@
 ---
 import { Image } from 'astro:assets';
-import heroImage from '../assets/images/man-voor-camionette.webp';
+import heroImage from '../assets/images/shcoonmaakbedrijf-limburt-aquaforce-hero.png';
 ---
 
 <!--
-  Hero hoogte bewust begrensd tot max 700px:
-  Bronafbeelding is 1534×504px (ratio 3:1).
-  Bij min-h-screen (bv. 1080px) schaalt object-cover het beeld 2.14× op → blur.
-  Bij max 700px: 700/504 = 1.39× → aanzienlijk scherper.
-  Bij 600px (mobiel/laptop): 600/504 = 1.19× → bijna 1:1, zeer scherp.
+  Hero — shcoonmaakbedrijf-limburt-aquaforce-hero.png
+  2061×763px (ratio 2.70:1) — hogere resolutie dan vorig beeld.
+  Bij clamp(620px, 82vh, 820px) sectie en 1920px scherm:
+    scale = 820/763 = 1.07× → bijna 1:1, zeer scherp.
 -->
 <section class="relative flex items-end overflow-hidden bg-navy-950"
   style="min-height: clamp(620px, 82vh, 820px);"
 >
 
-  <!-- Background image — quality 92, widths beperkt tot bronbreedte 1534px -->
+  <!-- Background image -->
   <Image
     src={heroImage}
-    alt=""
-    widths={[768, 1280, 1534]}
+    alt="Aquaforce schoonmaakbedrijf Bree — camionette en medewerkers"
+    widths={[768, 1280, 1920, 2061]}
     sizes="100vw"
     quality={92}
     loading="eager"
     fetchpriority="high"
     class="hero-bg-img absolute left-0 right-0 bottom-0 w-full select-none pointer-events-none"
-    style="object-fit: cover; object-position: center 20%; image-rendering: high-quality;"
+    style="object-fit: cover; object-position: center top; image-rendering: high-quality;"
   />
 
   <!-- Cinematic overlays — links donker voor tekst, rechts/boven beeld zichtbaar -->
