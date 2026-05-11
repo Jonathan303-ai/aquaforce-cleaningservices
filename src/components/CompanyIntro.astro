@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import vanImage from '../assets/images/aquaforce-van.jpg';
+import logoImage from '../assets/images/logo-goud-aquapower-schoonmaakbedrijf-limburg.webp';
 ---
 
 <section id="over-ons" class="bg-navy-950 py-24 md:py-40 overflow-hidden">
@@ -41,29 +41,50 @@ import vanImage from '../assets/images/aquaforce-van.jpg';
         </ul>
       </div>
 
-      <!-- Afbeelding rechts -->
+      <!-- Logo rechts — premium presentatie op donkere achtergrond -->
       <div class="relative order-first lg:order-last">
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/60 bg-navy-900">
-          <Image
-            src={vanImage}
-            alt="Aquaforce — professioneel reinigingsvoertuig in Bree, Limburg"
-            widths={[480, 800, 1200]}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            loading="lazy"
-            class="w-full h-[360px] md:h-[440px] object-cover object-center"
-          />
-          <!-- Subtiele overlay voor diepte -->
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-950/35 via-transparent to-transparent pointer-events-none"></div>
-          <!-- Status badge -->
-          <div class="absolute bottom-4 left-4 right-4">
-            <div class="inline-flex items-center gap-2.5 bg-navy-950/80 backdrop-blur-md border border-water-500/20 rounded-xl px-4 py-2.5">
-              <span class="w-2 h-2 rounded-full bg-water-400 shrink-0 animate-pulse"></span>
-              <span class="text-slate-300 text-sm font-medium">Actief in Bree, Limburg en omgeving</span>
-            </div>
+
+        <!-- Container met subtiele gradient achtergrond -->
+        <div
+          class="relative rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/70 flex items-center justify-center"
+          style="height: 360px; background: radial-gradient(ellipse 90% 70% at 50% 50%, #141820 0%, #0B0F14 60%, #05070B 100%);"
+        >
+          <!-- Ambient goud-glow achter het logo -->
+          <div
+            aria-hidden="true"
+            class="absolute pointer-events-none"
+            style="width: 70%; height: 55%; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(ellipse, rgba(201,168,76,0.14) 0%, rgba(201,168,76,0.04) 45%, transparent 75%); filter: blur(18px);"
+          ></div>
+
+          <!-- Subtiele top-vignette -->
+          <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-navy-950/20 via-transparent to-navy-950/25 pointer-events-none"></div>
+
+          <!-- Logo gecentreerd, object-contain, geen cropping -->
+          <div class="relative z-10 flex items-center justify-center w-full px-10 md:px-14">
+            <Image
+              src={logoImage}
+              alt="Aquaforce Cleaning Services — Schoonmaakbedrijf Limburg"
+              widths={[400, 700, 1070]}
+              sizes="(max-width: 1024px) 80vw, 40vw"
+              loading="lazy"
+              class="w-full max-w-[460px] md:max-w-[520px] h-auto object-contain select-none"
+            />
           </div>
+
+          <!-- Subtiele hairline border voor diepte -->
+          <div aria-hidden="true" class="absolute inset-0 rounded-2xl border border-white/[0.05] pointer-events-none"></div>
         </div>
-        <!-- Decoratieve glow -->
-        <div class="absolute -inset-2 rounded-2xl bg-gradient-to-br from-water-500/8 to-transparent -z-10 blur-sm pointer-events-none"></div>
+
+        <!-- Decoratieve goud-glow rond de container -->
+        <div
+          aria-hidden="true"
+          class="absolute -inset-3 rounded-2xl -z-10 pointer-events-none"
+          style="background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%); filter: blur(12px);"
+        ></div>
+
+        <!-- Subtiele lijn onderaan als scheiding -->
+        <div aria-hidden="true" class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-water-400/20 to-transparent"></div>
+
       </div>
 
     </div>
