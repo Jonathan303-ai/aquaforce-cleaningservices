@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import ContactCTA from '../components/ContactCTA.astro';
+import InfoBar from '../components/InfoBar.astro';
 
 import heroImg from '../assets/images/gevelreiniging-hero.webp';
 import detail1 from '../assets/images/gevelreiniging-detail-1.webp';
@@ -33,21 +34,24 @@ import detail2 from '../assets/images/gevelreiniging-detail-2.webp';
 
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-36 pb-14 md:pt-44 md:pb-18">
-      <nav aria-label="Breadcrumb" class="text-shadow-sm flex items-center gap-2 text-slate-400 text-sm mb-7">
+      <nav aria-label="Breadcrumb" class="text-shadow-sm flex items-center gap-2 text-white text-sm mb-7">
         <a href="/" class="hover:text-slate-200 transition-colors">Home</a>
         <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
-        <span class="text-slate-300">Oprit & gevelreiniging</span>
+        <span class="text-white">Oprit & gevelreiniging</span>
       </nav>
       <p class="text-shadow-sm text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-4">Dienst</p>
       <h1 class="text-shadow-hero font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-5 max-w-2xl">
         Oprit & gevel&shy;reiniging
       </h1>
-      <p class="text-shadow-sm text-slate-300/90 text-lg leading-relaxed max-w-xl">
+      <p class="text-shadow-sm text-white/90 text-lg leading-relaxed max-w-xl">
         Een verweerde gevel of bemoste oprit haalt het beeld van uw eigendom naar beneden.
         Wij geven uw buitenruimte haar oorspronkelijk aanzicht terug.
       </p>
     </div>
   </section>
+
+
+  <InfoBar />
 
   <!-- Wat reinigen we -->
   <section class="bg-navy-900 py-24 md:py-36">
@@ -56,12 +60,12 @@ import detail2 from '../assets/images/gevelreiniging-detail-2.webp';
 
         <div>
           <h2 class="font-display font-extrabold text-2xl md:text-3xl text-white mb-6">Wat reinigen we?</h2>
-          <p class="text-slate-400 leading-relaxed mb-5">
+          <p class="text-white leading-relaxed mb-5">
             We reinigen alle buitenoppervlakken die te maken krijgen met mos, algen, zwarte aanslag,
             vuil of weerinvloeden. Met aangepaste drukreiniging en de juiste behandelmiddelen
             verwijderen we aangroei zonder de ondergrond te beschadigen.
           </p>
-          <p class="text-slate-400 leading-relaxed">
+          <p class="text-white leading-relaxed">
             Elk oppervlak vraagt een andere aanpak. Baksteen, natuursteen, beton, klinkers —
             we kiezen de methode die past bij het materiaal en de mate van vervuiling.
           </p>
@@ -78,13 +82,14 @@ import detail2 from '../assets/images/gevelreiniging-detail-2.webp';
           ].map((item) => (
             <div class="bg-navy-800/60 border border-white/[0.07] hover:border-white/[0.13] rounded-xl p-5 transition-colors duration-200">
               <h3 class="font-display font-semibold text-white text-sm mb-2">{item.label}</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+              <p class="text-white text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- Detail afbeeldingen -->
   <section class="bg-navy-950 py-10 md:py-14">
@@ -116,12 +121,13 @@ import detail2 from '../assets/images/gevelreiniging-detail-2.webp';
     </div>
   </section>
 
+
   <!-- Werkwijze -->
   <section class="bg-navy-900 py-24 md:py-36">
     <div class="max-w-5xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="font-display font-extrabold text-2xl md:text-3xl text-white mb-4">Onze werkwijze</h2>
-        <p class="text-slate-400 max-w-lg mx-auto">Gericht op het oppervlak, met aandacht voor het resultaat.</p>
+        <p class="text-white max-w-lg mx-auto">Gericht op het oppervlak, met aandacht voor het resultaat.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -135,12 +141,13 @@ import detail2 from '../assets/images/gevelreiniging-detail-2.webp';
               <span class="font-display font-extrabold text-water-400">{step.num}</span>
             </div>
             <h3 class="font-display font-bold text-white mb-3">{step.title}</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+            <p class="text-white text-sm leading-relaxed">{step.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
+
 
   <!-- Praktische info -->
   <section class="bg-navy-950 py-16 md:py-20">
@@ -154,12 +161,13 @@ import detail2 from '../assets/images/gevelreiniging-detail-2.webp';
         ].map((info) => (
           <div class="text-center">
             <div class="font-display font-bold text-white text-sm mb-1">{info.label}</div>
-            <div class="text-slate-400 text-sm">{info.value}</div>
+            <div class="text-white text-sm">{info.value}</div>
           </div>
         ))}
       </div>
     </div>
   </section>
+
 
   <ContactCTA />
 </PageLayout>

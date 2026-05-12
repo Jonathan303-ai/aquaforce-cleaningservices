@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import logoImage from '../assets/images/logo-goud-aquapower-schoonmaakbedrijf-limburg.webp';
+import logoImage from '../assets/images/logo-goud-aquapower-clean-transparant.png';
+import druppel from '../assets/images/gouden-druppel-schoonmaakbedrijf-limburg.webp';
 ---
 
 <section id="over-ons" class="bg-navy-950 py-24 md:py-40 overflow-hidden">
@@ -13,11 +14,11 @@ import logoImage from '../assets/images/logo-goud-aquapower-schoonmaakbedrijf-li
         <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white mb-6 leading-tight">
           Vakmanschap met<br />aandacht voor detail
         </h2>
-        <p class="text-slate-400 text-lg leading-relaxed mb-5">
+        <p class="text-white text-lg leading-relaxed mb-5">
           Aquaforce is een schoonmaakbedrijf gevestigd in Bree, actief in de ruimere Limburgse regio.
           We werken met professioneel materiaal en stellen duidelijke afspraken voorop.
         </p>
-        <p class="text-slate-500 leading-relaxed mb-8">
+        <p class="text-white leading-relaxed mb-8">
           Of het nu gaat om een wekelijkse kantooropkuis, het wassen van grote glaspartijen
           of de reiniging van uw oprit — wij zorgen voor een verzorgd resultaat dat u kunt zien.
         </p>
@@ -29,62 +30,32 @@ import logoImage from '../assets/images/logo-goud-aquapower-schoonmaakbedrijf-li
             'Duidelijke prijsafspraken vooraf',
             'Betrouwbaar en verzekerd team',
           ].map((item) => (
-            <li class="flex items-center gap-3 text-slate-300 text-sm py-1">
-              <span class="w-5 h-5 rounded-full bg-water-500/10 border border-water-500/25 flex items-center justify-center shrink-0">
-                <svg class="w-3 h-3 text-water-400" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
+            <li class="flex items-center gap-3 text-white text-sm py-1">
+              <Image
+                src={druppel}
+                alt=""
+                aria-hidden="true"
+                width={13}
+                height={20}
+                class="shrink-0 object-contain h-[18px] md:h-[20px] w-auto"
+                loading="lazy"
+              />
               {item}
             </li>
           ))}
         </ul>
       </div>
 
-      <!-- Logo rechts — premium presentatie op donkere achtergrond -->
-      <div class="relative order-first lg:order-last">
-
-        <!-- Container met subtiele gradient achtergrond -->
-        <div
-          class="relative rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/70 flex items-center justify-center"
-          style="height: 360px; background: radial-gradient(ellipse 90% 70% at 50% 50%, #141820 0%, #0B0F14 60%, #05070B 100%);"
-        >
-          <!-- Ambient goud-glow achter het logo -->
-          <div
-            aria-hidden="true"
-            class="absolute pointer-events-none"
-            style="width: 70%; height: 55%; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(ellipse, rgba(201,168,76,0.14) 0%, rgba(201,168,76,0.04) 45%, transparent 75%); filter: blur(18px);"
-          ></div>
-
-          <!-- Subtiele top-vignette -->
-          <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-navy-950/20 via-transparent to-navy-950/25 pointer-events-none"></div>
-
-          <!-- Logo gecentreerd, object-contain, geen cropping -->
-          <div class="relative z-10 flex items-center justify-center w-full px-10 md:px-14">
-            <Image
-              src={logoImage}
-              alt="Aquaforce Cleaning Services — Schoonmaakbedrijf Limburg"
-              widths={[400, 700, 1070]}
-              sizes="(max-width: 1024px) 80vw, 40vw"
-              loading="lazy"
-              class="w-full max-w-[460px] md:max-w-[520px] h-auto object-contain select-none"
-            />
-          </div>
-
-          <!-- Subtiele hairline border voor diepte -->
-          <div aria-hidden="true" class="absolute inset-0 rounded-2xl border border-white/[0.05] pointer-events-none"></div>
-        </div>
-
-        <!-- Decoratieve goud-glow rond de container -->
-        <div
-          aria-hidden="true"
-          class="absolute -inset-3 rounded-2xl -z-10 pointer-events-none"
-          style="background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%); filter: blur(12px);"
-        ></div>
-
-        <!-- Subtiele lijn onderaan als scheiding -->
-        <div aria-hidden="true" class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-water-400/20 to-transparent"></div>
-
+      <!-- Logo rechts -->
+      <div class="flex items-center justify-center order-first lg:order-last px-10 md:px-14">
+        <Image
+          src={logoImage}
+          alt="Aquaforce Cleaning Services — Schoonmaakbedrijf Limburg"
+          widths={[400, 700, 1070]}
+          sizes="(max-width: 1024px) 80vw, 40vw"
+          loading="lazy"
+          class="w-full max-w-[460px] md:max-w-[520px] h-auto object-contain select-none"
+        />
       </div>
 
     </div>

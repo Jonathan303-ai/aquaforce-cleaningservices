@@ -56,23 +56,23 @@ const items = [
       {items.map((item, i) => (
         <div
           class:list={[
-            'flex flex-col items-center text-center py-7 lg:py-9 px-3 sm:px-5 lg:px-6 gap-4 border-white/[0.08]',
+            'flex flex-row items-center py-6 lg:py-8 px-3 sm:px-5 lg:px-6 gap-4 border-white/[0.08]',
             i % 2 === 0 ? 'border-r' : '',
             i < 2 ? 'border-b lg:border-b-0' : '',
             i < 3 ? 'lg:border-r' : '',
           ]}
         >
-          <!-- Icoon — fragment met expliciete dimensies op het SVG-element zelf -->
+          <!-- Icoon links -->
           <span class="flex items-center justify-center shrink-0">
             <Fragment set:html={item.icon} />
           </span>
 
-          <!-- Tekst -->
+          <!-- Tekst rechts -->
           <div>
-            <p class="text-white font-display font-semibold text-[10px] sm:text-[11px] tracking-[0.18em] uppercase mb-1.5 leading-tight">
+            <p class="text-white font-display font-semibold text-[10px] sm:text-[11px] tracking-[0.18em] uppercase mb-1 leading-tight">
               {item.title}
             </p>
-            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-[180px] mx-auto">
+            <p class="text-white text-xs sm:text-sm leading-relaxed">
               {item.desc}
             </p>
           </div>

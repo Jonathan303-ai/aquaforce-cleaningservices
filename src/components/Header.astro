@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/images/logo-aquaforce-nieuw.webp';
+import logo from '../assets/images/logo-aquaforce-clean-transparant.png';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -28,20 +28,14 @@ function isActive(href: string) {
 
       <!-- Logo -->
       <a href="/" class="shrink-0" aria-label="Aquaforce Cleaning Services — home">
-        <div
-          class="inline-flex items-center transition-all duration-200 hover:brightness-110"
-          style="background: rgba(5,15,32,0.75); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 8px 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); backdrop-filter: blur(12px);"
-        >
-          <Image
-            src={logo}
-            alt="Aquaforce Cleaning Services"
-            height={42}
-            class="block w-auto object-contain h-[34px] md:h-[42px]"
-            style="border-radius: 6px;"
-            loading="eager"
-            fetchpriority="high"
-          />
-        </div>
+        <Image
+          src={logo}
+          alt="Aquaforce Cleaning Services"
+          height={42}
+          class="block w-auto object-contain h-[34px] md:h-[42px] transition-all duration-200 hover:brightness-110"
+          loading="eager"
+          fetchpriority="high"
+        />
       </a>
 
       <!-- Desktop nav -->
@@ -52,7 +46,7 @@ function isActive(href: string) {
             class={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ${
               isActive(link.href)
                 ? 'text-white bg-white/5'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+                : 'text-white hover:text-white hover:bg-white/5'
             }`}
           >
             {link.label}
@@ -76,7 +70,7 @@ function isActive(href: string) {
         id="mobile-menu-btn"
         aria-label="Menu"
         aria-expanded="false"
-        class="lg:hidden p-2 text-slate-400 hover:text-white transition-colors"
+        class="lg:hidden p-2 text-white hover:text-white transition-colors"
       >
         <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
@@ -92,19 +86,13 @@ function isActive(href: string) {
   <div id="mobile-menu" class="hidden lg:hidden border-t border-white/5 bg-navy-900">
     <!-- Logo herhaling in mobiel menu -->
     <div class="max-w-7xl mx-auto px-6 pt-4 pb-2">
-      <div
-        class="inline-flex items-center"
-        style="background: rgba(5,15,32,0.75); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; padding: 6px 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.30); backdrop-filter: blur(12px);"
-      >
-        <Image
-          src={logo}
-          alt="Aquaforce Cleaning Services"
-          height={34}
-          class="block w-auto object-contain h-[34px]"
-          style="border-radius: 5px;"
-          loading="lazy"
-        />
-      </div>
+      <Image
+        src={logo}
+        alt="Aquaforce Cleaning Services"
+        height={34}
+        class="block w-auto object-contain h-[34px]"
+        loading="lazy"
+      />
     </div>
     <nav class="max-w-7xl mx-auto px-6 py-2 flex flex-col gap-1">
       {navLinks.map((link) => (
@@ -113,7 +101,7 @@ function isActive(href: string) {
           class={`mobile-nav-link px-3 py-3 rounded-md text-sm font-medium transition-colors ${
             isActive(link.href)
               ? 'text-white bg-white/5'
-              : 'text-slate-400 hover:text-white'
+              : 'text-white hover:text-white'
           }`}
         >
           {link.label}

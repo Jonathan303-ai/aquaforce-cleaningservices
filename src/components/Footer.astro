@@ -1,19 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/images/logo-aquaforce-nieuw.webp';
+import logo from '../assets/images/logo-aquaforce-clean-transparant.png';
 import waterBg from '../assets/images/schoonmaakbedrijf-limburg.png';
+import druppel from '../assets/images/gouden-druppel-schoonmaakbedrijf-limburg.webp';
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="relative bg-navy-900 border-t border-navy-700/40 overflow-hidden">
 
-  <!-- Subtiele bovenrand-fade naar zwart voor premium overgang van content naar footer -->
-  <div aria-hidden="true" class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-navy-950 to-transparent pointer-events-none z-20"></div>
-
-  <!-- Decoratieve waterbranding overlay — subtiel, alpha-transparant PNG -->
-  <!-- mix-blend-mode: screen op donkere achtergrond: licht blauwe accenten waar
-       de PNG niet transparant is, volledig onzichtbaar waar de PNG transparant is -->
+  <!-- Decoratieve waterbranding overlay -->
   <div
     aria-hidden="true"
     class="absolute inset-0 pointer-events-none select-none footer-water-overlay"
@@ -39,15 +35,13 @@ const year = new Date().getFullYear();
           class="inline-flex mb-6 transition-opacity duration-200 hover:opacity-90"
           aria-label="Aquaforce Cleaning Services — home"
         >
-          <div class="footer-logo-circle">
-            <Image
-              src={logo}
-              alt="Aquaforce Cleaning Services"
-              height={116}
-              class="block w-auto object-contain footer-logo-img"
-              loading="lazy"
-            />
-          </div>
+          <Image
+            src={logo}
+            alt="Aquaforce Cleaning Services"
+            height={88}
+            class="block w-auto object-contain footer-logo-img"
+            loading="lazy"
+          />
         </a>
         <p class="footer-brand-text">
           Professionele schoonmaakdiensten in Bree, Limburg en omliggende regio's. Betrouwbaar, grondig en op afgesproken tijdstippen.
@@ -56,7 +50,7 @@ const year = new Date().getFullYear();
 
       <!-- Diensten -->
       <div>
-        <h3 class="font-display font-semibold text-white text-sm mb-4">Diensten</h3>
+        <h3 class="font-display font-semibold text-sm mb-4 uppercase tracking-widest" style="color: #C9A84C;">Diensten</h3>
         <ul class="space-y-2.5">
           {[
             { label: 'Kantoorschoonmaak', href: '/kantoorschoonmaak' },
@@ -64,7 +58,16 @@ const year = new Date().getFullYear();
             { label: 'Oprit & gevelreiniging', href: '/oprit-en-gevelreiniging' },
           ].map((link) => (
             <li>
-              <a href={link.href} class="text-slate-500 hover:text-slate-300 text-sm transition-colors">
+              <a href={link.href} class="inline-flex items-center gap-2 text-white hover:text-slate-300 text-sm transition-colors">
+                <Image
+                  src={druppel}
+                  alt=""
+                  aria-hidden="true"
+                  width={9}
+                  height={13}
+                  class="shrink-0 object-contain h-[13px] w-auto"
+                  loading="lazy"
+                />
                 {link.label}
               </a>
             </li>
@@ -74,17 +77,17 @@ const year = new Date().getFullYear();
 
       <!-- Contact -->
       <div>
-        <h3 class="font-display font-semibold text-white text-sm mb-4">Contact</h3>
-        <address class="not-italic space-y-3 text-sm text-slate-500">
+        <h3 class="font-display font-semibold text-sm mb-4 uppercase tracking-widest" style="color: #C9A84C;">Contact</h3>
+        <address class="not-italic space-y-3 text-sm text-white">
           <p class="flex items-start gap-2">
             <svg class="w-4 h-4 mt-0.5 text-water-400/40 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
-            Bree, Limburg, België
+            Cosijnstraat 15, 3960 Bree, België
           </p>
           <p>
-            <a href="mailto:info@aquaforce.be" class="flex items-start gap-2 hover:text-slate-400 transition-colors">
+            <a href="mailto:info@aquaforce.be" class="flex items-start gap-2 hover:text-slate-300 transition-colors">
               <svg class="w-4 h-4 mt-0.5 text-water-400/40 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
@@ -92,7 +95,7 @@ const year = new Date().getFullYear();
             </a>
           </p>
           <p>
-            <a href="tel:+32465045504" class="flex items-start gap-2 hover:text-slate-400 transition-colors">
+            <a href="tel:+32465045504" class="flex items-start gap-2 hover:text-slate-300 transition-colors">
               <svg class="w-4 h-4 mt-0.5 text-water-400/40 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
               </svg>
@@ -104,10 +107,10 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="border-t border-navy-700/40 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-slate-600 text-sm">© {year} Aquaforce Cleaning Services. Alle rechten voorbehouden.</p>
+      <p class="text-white text-sm">© {year} Aquaforce Cleaning Services. Alle rechten voorbehouden.</p>
       <div class="flex gap-6">
-        <a href="#" class="text-slate-600 hover:text-slate-400 text-sm transition-colors">Privacybeleid</a>
-        <a href="#" class="text-slate-600 hover:text-slate-400 text-sm transition-colors">Algemene voorwaarden</a>
+        <a href="/privacybeleid" class="text-white hover:text-slate-400 text-sm transition-colors">Privacybeleid</a>
+        <a href="/algemene-voorwaarden" class="text-white hover:text-slate-400 text-sm transition-colors">Algemene voorwaarden</a>
       </div>
     </div>
   </div>
@@ -119,12 +122,14 @@ const year = new Date().getFullYear();
      werkt screen blend averechts (donker×donker = nog donkerder).
      Directe opacity geeft meest voorspelbare en zichtbare result. */
   .footer-water-overlay {
-    opacity: 0.22;
+    opacity: 0.52;
+    mix-blend-mode: screen;
+    filter: sepia(0.65) saturate(2) hue-rotate(5deg);
   }
 
   @media (max-width: 768px) {
     .footer-water-overlay {
-      opacity: 0.14;
+      opacity: 0.38;
     }
   }
 
@@ -140,27 +145,6 @@ const year = new Date().getFullYear();
     text-shadow: 0 1px 6px rgba(5, 7, 11, 0.80);
     display: inline-block;
     max-width: 100%;
-  }
-
-  .footer-logo-circle {
-    width: 110px;
-    height: 110px;
-    border-radius: 9999px;
-    background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    flex-shrink: 0;
-  }
-
-  @media (min-width: 768px) {
-    .footer-logo-circle {
-      width: 140px;
-      height: 140px;
-      padding: 12px;
-    }
   }
 
   .footer-logo-img {

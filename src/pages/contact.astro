@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
+import InfoBar from '../components/InfoBar.astro';
 ---
 
 <PageLayout
@@ -21,12 +22,15 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
       <h1 class="font-display font-extrabold text-4xl md:text-5xl text-white leading-tight mb-5">
         Contacteer ons
       </h1>
-      <p class="text-slate-400 text-lg leading-relaxed">
+      <p class="text-white text-lg leading-relaxed">
         Heeft u een vraag of wilt u een offerte ontvangen? Vul het formulier in
         of neem rechtstreeks contact op. Wij reageren binnen één werkdag.
       </p>
     </div>
   </section>
+
+
+  <InfoBar />
 
   <!-- Contact grid -->
   <section class="bg-navy-900 py-20 md:py-32">
@@ -53,7 +57,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label for="naam" class="block text-slate-300 text-sm font-medium mb-2">Naam <span class="text-water-400">*</span></label>
+                  <label for="naam" class="block text-white text-sm font-medium mb-2">Naam <span class="text-water-400">*</span></label>
                   <input
                     id="naam"
                     name="naam"
@@ -65,7 +69,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
                   />
                 </div>
                 <div>
-                  <label for="email" class="block text-slate-300 text-sm font-medium mb-2">E-mail <span class="text-water-400">*</span></label>
+                  <label for="email" class="block text-white text-sm font-medium mb-2">E-mail <span class="text-water-400">*</span></label>
                   <input
                     id="email"
                     name="email"
@@ -79,7 +83,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
               </div>
 
               <div>
-                <label for="telefoon" class="block text-slate-300 text-sm font-medium mb-2">Telefoonnummer</label>
+                <label for="telefoon" class="block text-white text-sm font-medium mb-2">Telefoonnummer</label>
                 <input
                   id="telefoon"
                   name="telefoon"
@@ -91,7 +95,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
               </div>
 
               <div>
-                <label for="dienst" class="block text-slate-300 text-sm font-medium mb-2">Dienst <span class="text-water-400">*</span></label>
+                <label for="dienst" class="block text-white text-sm font-medium mb-2">Dienst <span class="text-water-400">*</span></label>
                 <select
                   id="dienst"
                   name="dienst"
@@ -108,7 +112,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
               </div>
 
               <div>
-                <label for="bericht" class="block text-slate-300 text-sm font-medium mb-2">Bericht <span class="text-water-400">*</span></label>
+                <label for="bericht" class="block text-white text-sm font-medium mb-2">Bericht <span class="text-water-400">*</span></label>
                 <textarea
                   id="bericht"
                   name="bericht"
@@ -140,7 +144,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
                 </svg>
               </div>
               <h3 class="font-display font-bold text-white text-lg mb-2">Bericht ontvangen</h3>
-              <p class="text-slate-400 text-sm">Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.</p>
+              <p class="text-white text-sm">Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.</p>
             </div>
           </div>
         </div>
@@ -159,7 +163,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
                   </svg>
                 </div>
                 <div>
-                  <p class="text-slate-500 text-xs uppercase tracking-wider mb-1">Telefoon</p>
+                  <p class="text-white text-xs uppercase tracking-wider mb-1">Telefoon</p>
                   <a href="tel:+32465045504" class="text-white font-medium hover:text-water-300 transition-colors">+32 465 04 55 04</a>
                 </div>
               </div>
@@ -171,7 +175,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
                   </svg>
                 </div>
                 <div>
-                  <p class="text-slate-500 text-xs uppercase tracking-wider mb-1">E-mail</p>
+                  <p class="text-white text-xs uppercase tracking-wider mb-1">E-mail</p>
                   <a href="mailto:info@aquaforce.be" class="text-white font-medium hover:text-water-300 transition-colors">info@aquaforce.be</a>
                 </div>
               </div>
@@ -184,9 +188,21 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
                   </svg>
                 </div>
                 <div>
-                  <p class="text-slate-500 text-xs uppercase tracking-wider mb-1">Werkgebied</p>
+                  <p class="text-white text-xs uppercase tracking-wider mb-1">Adres</p>
+                  <p class="text-white font-medium">Cosijnstraat 15, 3960 Bree</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-water-500/10 border border-water-500/20 flex items-center justify-center text-water-400 shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-white text-xs uppercase tracking-wider mb-1">Werkgebied</p>
                   <p class="text-white font-medium">Bree, Limburg en omliggende regio's</p>
-                  <p class="text-slate-500 text-sm mt-0.5">Bree, Maaseik, Peer, Hamont-Achel en omgeving</p>
+                  <p class="text-white text-sm mt-0.5">Bree, Maaseik, Peer, Hamont-Achel en omgeving</p>
                 </div>
               </div>
 
@@ -197,9 +213,9 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
                   </svg>
                 </div>
                 <div>
-                  <p class="text-slate-500 text-xs uppercase tracking-wider mb-1">Beschikbaarheid</p>
+                  <p class="text-white text-xs uppercase tracking-wider mb-1">Beschikbaarheid</p>
                   <p class="text-white font-medium">Maandag – Zaterdag</p>
-                  <p class="text-slate-500 text-sm mt-0.5">07:00 – 20:00</p>
+                  <p class="text-white text-sm mt-0.5">07:00 – 20:00</p>
                 </div>
               </div>
             </div>
@@ -207,7 +223,7 @@ import camionette from '../assets/images/schoonmaakbedrijf-bree.png';
 
           <!-- Note -->
           <div class="bg-navy-800/60 border border-navy-600/40 rounded-xl p-5 mt-2">
-            <p class="text-slate-400 text-sm leading-relaxed">
+            <p class="text-white text-sm leading-relaxed">
               <span class="text-white font-medium">Vrijblijvende offerte.</span> Wij maken een
               prijsopgave op maat van uw situatie. Geen forfaittarieven, geen verborgen kosten.
             </p>
