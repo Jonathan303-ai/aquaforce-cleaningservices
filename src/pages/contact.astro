@@ -43,16 +43,15 @@ import InfoBar from '../components/InfoBar.astro';
             <h2 class="font-display font-bold text-white text-xl mb-7">Stuur ons een bericht</h2>
 
             <form
-              name="contact"
               method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
+              action="/api/contact"
               class="space-y-5"
               id="contact-form"
+              novalidate
             >
-              <input type="hidden" name="form-name" value="contact" />
-              <p class="hidden">
-                <label>Niet invullen: <input name="bot-field" /></label>
+              <!-- Honeypot -->
+              <p class="hidden" aria-hidden="true">
+                <label>Niet invullen: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -123,17 +122,33 @@ import InfoBar from '../components/InfoBar.astro';
                 ></textarea>
               </div>
 
+              <!-- Cloudflare Turnstile -->
+              <div
+                class="cf-turnstile"
+                data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+                data-theme="dark"
+                data-language="nl"
+              ></div>
+
+              <!-- Server-side error feedback -->
+              <div id="form-error" class="hidden rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400" role="alert"></div>
+
               <button
                 type="submit"
-                class="w-full inline-flex items-center justify-center gap-2 bg-water-500 hover:bg-water-600 text-[#0B0F14] font-semibold py-4 rounded-lg transition-all duration-200 shadow-lg shadow-water-500/20 hover:-translate-y-0.5"
+                id="submit-btn"
+                class="w-full inline-flex items-center justify-center gap-2 bg-water-500 hover:bg-water-600 text-[#0B0F14] font-semibold py-4 rounded-lg transition-all duration-200 shadow-lg shadow-water-500/20 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               >
-                Offerte aanvragen
-                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                <span id="submit-label">Offerte aanvragen</span>
+                <svg id="submit-arrow" class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
                   <path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <svg id="submit-spinner" class="hidden w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                 </svg>
               </button>
 
-              <p class="text-slate-600 text-xs text-center">Geen verplichtingen — wij reageren binnen één werkdag.</p>
+              <p class="text-white/40 text-xs text-center">Geen verplichtingen — wij reageren binnen één werkdag.</p>
             </form>
 
             <!-- Success message (hidden by default) -->
@@ -164,7 +179,7 @@ import InfoBar from '../components/InfoBar.astro';
                 </div>
                 <div>
                   <p class="text-white text-xs uppercase tracking-wider mb-1">Telefoon</p>
-                  <a href="tel:+32465045504" class="text-white font-medium hover:text-water-300 transition-colors">+32 465 04 55 04</a>
+                  <a href="tel:003289390061" class="text-white font-medium hover:text-water-300 transition-colors">003289390061</a>
                 </div>
               </div>
 
@@ -190,6 +205,18 @@ import InfoBar from '../components/InfoBar.astro';
                 <div>
                   <p class="text-white text-xs uppercase tracking-wider mb-1">Adres</p>
                   <p class="text-white font-medium">Cosijnstraat 15, 3960 Bree</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-water-500/10 border border-water-500/20 flex items-center justify-center text-water-400 shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-white text-xs uppercase tracking-wider mb-1">BTW-nummer</p>
+                  <p class="text-white font-medium">BE1037.745.887</p>
                 </div>
               </div>
 
@@ -248,20 +275,63 @@ import InfoBar from '../components/InfoBar.astro';
 
 </PageLayout>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const success = document.getElementById('form-success');
+  const form      = document.getElementById('contact-form')  as HTMLFormElement | null;
+  const success   = document.getElementById('form-success');
+  const errorBox  = document.getElementById('form-error');
+  const submitBtn = document.getElementById('submit-btn')    as HTMLButtonElement | null;
+  const submitLabel   = document.getElementById('submit-label');
+  const submitArrow   = document.getElementById('submit-arrow');
+  const submitSpinner = document.getElementById('submit-spinner');
+
+  function setLoading(loading: boolean) {
+    if (!submitBtn) return;
+    submitBtn.disabled = loading;
+    submitLabel?.classList.toggle('hidden', loading);
+    submitArrow?.classList.toggle('hidden', loading);
+    submitSpinner?.classList.toggle('hidden', !loading);
+  }
+
+  function showError(msg: string) {
+    if (!errorBox) return;
+    errorBox.textContent = msg;
+    errorBox.classList.remove('hidden');
+    errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hideError() {
+    errorBox?.classList.add('hidden');
+  }
 
   form?.addEventListener('submit', async (e) => {
-    if (!form.getAttribute('data-netlify')) return;
     e.preventDefault();
+    hideError();
+    setLoading(true);
+
     try {
       const data = new FormData(form);
-      await fetch('/', { method: 'POST', body: data });
-      form.classList.add('hidden');
-      success?.classList.remove('hidden');
+      const res  = await fetch('/api/contact', { method: 'POST', body: data });
+      const json = await res.json() as { ok?: boolean; error?: string };
+
+      if (json.ok) {
+        form.classList.add('hidden');
+        success?.classList.remove('hidden');
+      } else {
+        showError(json.error ?? 'Er is een fout opgetreden. Probeer het opnieuw.');
+        // Reset Turnstile widget so user can retry
+        if (typeof (window as any).turnstile !== 'undefined') {
+          (window as any).turnstile.reset();
+        }
+      }
     } catch {
-      form.submit();
+      showError('Verbindingsfout. Controleer uw internetverbinding en probeer opnieuw.');
+      if (typeof (window as any).turnstile !== 'undefined') {
+        (window as any).turnstile.reset();
+      }
+    } finally {
+      setLoading(false);
     }
   });
 </script>
