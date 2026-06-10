@@ -122,6 +122,14 @@ import InfoBar from '../components/InfoBar.astro';
                 ></textarea>
               </div>
 
+              <!-- Cloudflare Turnstile -->
+              <div
+                class="cf-turnstile"
+                data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+                data-theme="dark"
+                data-language="nl"
+              ></div>
+
               <!-- Server-side error feedback -->
               <div id="form-error" class="hidden rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400" role="alert"></div>
 
@@ -171,7 +179,7 @@ import InfoBar from '../components/InfoBar.astro';
                 </div>
                 <div>
                   <p class="text-white text-xs uppercase tracking-wider mb-1">Telefoon</p>
-                  <a href="tel:003289390061" class="text-white font-medium hover:text-water-300 transition-colors">003289390061</a>
+                  <a href="tel:+32465045504" class="text-white font-medium hover:text-water-300 transition-colors">+32 465 04 55 04</a>
                 </div>
               </div>
 
@@ -197,18 +205,6 @@ import InfoBar from '../components/InfoBar.astro';
                 <div>
                   <p class="text-white text-xs uppercase tracking-wider mb-1">Adres</p>
                   <p class="text-white font-medium">Cosijnstraat 15, 3960 Bree</p>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-water-500/10 border border-water-500/20 flex items-center justify-center text-water-400 shrink-0 mt-0.5">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-white text-xs uppercase tracking-wider mb-1">BTW-nummer</p>
-                  <p class="text-white font-medium">BE1037.745.887</p>
                 </div>
               </div>
 
@@ -267,6 +263,8 @@ import InfoBar from '../components/InfoBar.astro';
 
 </PageLayout>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
   const form      = document.getElementById('contact-form')  as HTMLFormElement | null;
   const success   = document.getElementById('form-success');
@@ -310,9 +308,16 @@ import InfoBar from '../components/InfoBar.astro';
         success?.classList.remove('hidden');
       } else {
         showError(json.error ?? 'Er is een fout opgetreden. Probeer het opnieuw.');
+        // Reset Turnstile widget so user can retry
+        if (typeof (window as any).turnstile !== 'undefined') {
+          (window as any).turnstile.reset();
+        }
       }
     } catch {
       showError('Verbindingsfout. Controleer uw internetverbinding en probeer opnieuw.');
+      if (typeof (window as any).turnstile !== 'undefined') {
+        (window as any).turnstile.reset();
+      }
     } finally {
       setLoading(false);
     }

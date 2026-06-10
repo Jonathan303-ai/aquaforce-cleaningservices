@@ -1,0 +1,19 @@
+import { c as createComponent, $ as $$Image } from './_astro_assets_B9eCAUT0.mjs';
+import 'piccolore';
+import { m as maybeRenderHead, r as renderComponent, b as renderTemplate } from './entrypoint_DV19SN15.mjs';
+import { c as camionette } from './InfoBar_6m9QEVkj.mjs';
+
+const $$ContactCTA = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${maybeRenderHead()}<section class="relative bg-navy-950 py-28 md:py-44 overflow-hidden"> <!-- Background glow --> <div aria-hidden="true" class="absolute inset-0 pointer-events-none"> <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-water-600/[0.06] rounded-full blur-[120px]"></div> </div> <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-water-500/15 to-transparent"></div> <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8"> <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"> <!-- Tekst + CTA knoppen --> <div class="text-center lg:text-left order-2 lg:order-1"> <p class="text-water-400 font-display font-semibold text-xs tracking-[0.25em] uppercase mb-4">Vrijblijvend</p> <h2 class="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-white mb-5 leading-tight">
+Vraag een offerte aan
+</h2> <p class="text-white text-lg mb-10 leading-relaxed">
+Vertel ons wat u nodig heeft. Wij sturen u snel een duidelijke prijsopgave
+          zonder verborgen kosten.
+</p> <div class="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-8"> <a href="/contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-water-500 hover:bg-water-600 text-[#0B0F14] font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:-translate-y-1 shadow-[0_4px_24px_rgba(201,168,76,0.24)] hover:shadow-[0_10px_40px_rgba(201,168,76,0.38)]">
+Contactformulier
+<svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor"> <path fill-rule="evenodd" d="M6.293 12.707a1 1 0 010-1.414L9.586 8 6.293 4.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path> </svg> </a> <a href="tel:+32465045504" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-water-500/25 hover:border-water-400/50 text-water-400 hover:text-water-300 font-medium px-8 py-4 rounded-lg transition-all duration-200 hover:-translate-y-0.5"> <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path> </svg>
+Bel ons direct
+</a> </div> <p class="text-white00 text-sm text-center lg:text-left">Reactie binnen één werkdag &mdash; geen verplichtingen</p> </div> <!-- Camionette visueel --> <div class="flex items-end justify-center lg:justify-end order-1 lg:order-2"> ${renderComponent($$result, "Image", $$Image, { "src": camionette, "alt": "Aquaforce schoonmaakbedrijf Bree camionette", "widths": [480, 800], "sizes": "(max-width: 1024px) 70vw, 42vw", "loading": "lazy", "class": "w-auto max-h-[200px] md:max-h-[260px] lg:max-h-[300px] object-contain select-none", "style": "filter: drop-shadow(0 18px 36px rgba(201,168,76,0.15)) drop-shadow(0 6px 12px rgba(0,0,0,0.45));" })} </div> </div> </div> </section>`;
+}, "/Users/jonathan/Sites/aquaforce-cleaningservices/src/components/ContactCTA.astro", void 0);
+
+export { $$ContactCTA as $ };
