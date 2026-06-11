@@ -302,14 +302,21 @@ import InfoBar from '../components/InfoBar.astro';
 
     try {
       const data = new FormData(form);
-      const res  = await fetch('/api/contact', { method: 'POST', body: data });
-      const json = await res.json() as { ok?: boolean; error?: string };
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      const contentType = res.headers.get('content-type') ?? '';
+      const json = contentType.includes('application/json')
+        ? await res.json() as { ok?: boolean; error?: string }
+        : {};
 
-      if (json.ok) {
+      if (res.ok && json.ok) {
         form.classList.add('hidden');
         success?.classList.remove('hidden');
       } else {
-        showError(json.error ?? 'Er is een fout opgetreden. Probeer het opnieuw.');
+        showError(json.error ?? 'Verzenden mislukt. Probeer het later opnieuw of bel ons rechtstreeks.');
       }
     } catch {
       showError('Verbindingsfout. Controleer uw internetverbinding en probeer opnieuw.');

@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 
+export const prerender = false;
+
 // ---------------------------------------------------------------------------
 // Rate limiting — in-memory per serverless instance (3 submissions / 10 min)
 // ---------------------------------------------------------------------------
@@ -26,6 +28,19 @@ function checkRateLimit(ip: string): boolean {
 function sanitize(value: unknown, maxLen = 1000): string {
   if (typeof value !== 'string') return '';
   return value.trim().replace(/[<>]/g, '').substring(0, maxLen);
+}
+
+function escapeHtml(value: string): string {
+  return value.replace(
+    /[&<>"']/g,
+    (character) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    })[character] ?? character,
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -86,7 +101,7 @@ export const POST: APIRoute = async ({ request }) => {
   if (!naam || naam.length < 2) {
     return json({ error: 'Vul een geldige naam in (minimaal 2 tekens).' }, 400);
   }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9-]+(?:\.[A-Z0-9-]+)+$/i.test(email)) {
     return json({ error: 'Vul een geldig e-mailadres in.' }, 400);
   }
   if (!dienst || !DIENST_LABELS[dienst]) {
@@ -96,18 +111,32 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ error: 'Vul een bericht in (minimaal 10 tekens).' }, 400);
   }
 
-  // --- 6. Send via Resend -----------------------------------------------------
-  const resend = new Resend(import.meta.env.RESEND_API_KEY);
+  // --- 5. Send via Resend -----------------------------------------------------
+  const apiKey = import.meta.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error('[contact] RESEND_API_KEY is not configured');
+    return json(
+      { error: 'De e-mailservice is niet geconfigureerd. Neem telefonisch contact op.' },
+      500,
+    );
+  }
+
+  const resend = new Resend(apiKey);
+  const veiligeNaam = escapeHtml(naam);
+  const veiligeEmail = escapeHtml(email);
+  const veiligeTelefoon = escapeHtml(telefoon);
+  const veiligBericht = escapeHtml(bericht);
+  const veiligIp = escapeHtml(ip);
 
   const telefoonRij = telefoon
     ? `<tr>
         <td style="padding:8px 0;color:#888;width:130px;vertical-align:top">Telefoon</td>
-        <td style="padding:8px 0">${telefoon}</td>
+        <td style="padding:8px 0">${veiligeTelefoon}</td>
       </tr>`
     : '';
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: 'Aquaforce Website <noreply@aquaforce-cleaning.be>',
       to:   ['info@aquaforce-cleaning.be'],
       replyTo: email,
@@ -134,11 +163,11 @@ export const POST: APIRoute = async ({ request }) => {
             <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
               <tr>
                 <td style="padding:8px 0;color:#888;width:130px;vertical-align:top">Naam</td>
-                <td style="padding:8px 0;font-weight:600">${naam}</td>
+                <td style="padding:8px 0;font-weight:600">${veiligeNaam}</td>
               </tr>
               <tr>
                 <td style="padding:8px 0;color:#888;vertical-align:top">E-mail</td>
-                <td style="padding:8px 0"><a href="mailto:${email}" style="color:#C9A84C;text-decoration:none">${email}</a></td>
+                <td style="padding:8px 0"><a href="mailto:${veiligeEmail}" style="color:#C9A84C;text-decoration:none">${veiligeEmail}</a></td>
               </tr>
               ${telefoonRij}
               <tr>
@@ -150,13 +179,13 @@ export const POST: APIRoute = async ({ request }) => {
             <hr style="border:none;border-top:1px solid #eee;margin:24px 0">
 
             <p style="margin:0 0 8px;color:#888;font-size:13px;text-transform:uppercase;letter-spacing:0.1em">Bericht</p>
-            <p style="margin:0;white-space:pre-wrap;line-height:1.65;color:#222">${bericht}</p>
+            <p style="margin:0;white-space:pre-wrap;line-height:1.65;color:#222">${veiligBericht}</p>
 
             <hr style="border:none;border-top:1px solid #eee;margin:28px 0 20px">
 
-            <a href="mailto:${email}"
+            <a href="mailto:${veiligeEmail}"
                style="display:inline-block;background:#C9A84C;color:#0B0F14;font-weight:700;padding:12px 24px;border-radius:6px;text-decoration:none;font-size:14px">
-              Beantwoord ${naam}
+              Beantwoord ${veiligeNaam}
             </a>
           </td>
         </tr>
@@ -165,7 +194,7 @@ export const POST: APIRoute = async ({ request }) => {
         <tr>
           <td style="background:#f9f9f9;padding:16px 32px;border-top:1px solid #eee">
             <p style="margin:0;color:#bbb;font-size:11px">
-              Verzonden via het contactformulier op aquaforce-cleaning.be &nbsp;·&nbsp; IP: ${ip}
+              Verzonden via het contactformulier op aquaforce-cleaning.be &nbsp;·&nbsp; IP: ${veiligIp}
             </p>
           </td>
         </tr>
@@ -176,6 +205,14 @@ export const POST: APIRoute = async ({ request }) => {
 </body>
 </html>`,
     });
+
+    if (error) {
+      console.error('[contact] Resend rejected email:', error);
+      return json(
+        { error: 'Verzenden mislukt. Probeer het later opnieuw of neem telefonisch contact op.' },
+        502,
+      );
+    }
 
     return json({ ok: true });
 
